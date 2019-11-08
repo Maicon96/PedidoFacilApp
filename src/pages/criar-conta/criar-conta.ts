@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-
 @IonicPage()
 @Component({
-  selector: 'page-cardapio',
-  templateUrl: 'cardapio.html',
+  selector: 'page-criar-conta',
+  templateUrl: 'criar-conta.html',
 })
-export class CardapioPage {
+export class CriarContaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CardapioPage');
+    console.log('ionViewDidLoad CriarContaPage');
   }
 
 }

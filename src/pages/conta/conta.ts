@@ -1,3 +1,4 @@
+import { CriarContaPage } from './../criar-conta/criar-conta';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from './../login/login';
@@ -18,6 +19,10 @@ export class ContaPage {
 
   public chamaTelaLogin() {
     this.navCtrl.push(LoginPage);
+  }
+
+  public chamaTelaCriarConta() {
+    this.navCtrl.push(CriarContaPage);
   }
 
 }

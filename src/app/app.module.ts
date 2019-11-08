@@ -11,10 +11,15 @@ import { LoginPageModule } from './../pages/login/login.module';
 import { ContaPageModule } from './../pages/conta/conta.module';
 import { CarrinhoPageModule} from './../pages/carrinho/carrinho.module';
 import { CardapioPageModule} from './../pages/cardapio/cardapio.module';
+import { CriarContaPageModule } from './../pages/criar-conta/criar-conta.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ConfiguracaoProvider } from '../providers/configuracao/configuracao';
+import { BaresProvider } from '../providers/bares/bares';
+import { CardapioProvider } from '../providers/cardapio/cardapio';
+import { UsuarioProvider } from '../providers/usuario/usuario';
+import { PedidoProvider } from '../providers/pedido/pedido';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,8 @@ import { ConfiguracaoProvider } from '../providers/configuracao/configuracao';
     LoginPageModule,
     ContaPageModule,
     CarrinhoPageModule,
-    CardapioPageModule
+    CardapioPageModule,
+    CriarContaPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,7 +48,11 @@ import { ConfiguracaoProvider } from '../providers/configuracao/configuracao';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ConfiguracaoProvider
+    ConfiguracaoProvider,
+    BaresProvider,
+    CardapioProvider,
+    UsuarioProvider,
+    PedidoProvider
   ]
 })
 export class AppModule {}
