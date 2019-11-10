@@ -1,15 +1,11 @@
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Criar Conta</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content padding>
-
   <form>
-
     <ion-item>
       <ion-label floating>Nome</ion-label>
       <ion-input type="text" name="nome"></ion-input>
@@ -23,6 +19,10 @@
       <ion-input type="text" name="rg"></ion-input>
     </ion-item>
     <ion-item>
+      <ion-label floating>E-Mail</ion-label>
+      <ion-input type="mail" name="email"></ion-input>
+    </ion-item>
+    <ion-item>
       <ion-label floating>Senha</ion-label>
       <ion-input type="password" name="senha"></ion-input>
     </ion-item>
@@ -30,9 +30,7 @@
       <ion-label floating>Confirmar Senha</ion-label>
       <ion-input type="password" name="confirmarsenha"></ion-input>
     </ion-item>
-
     <p></p>
-    <button ion-button round block color="primary">Cadastrar</button>
+    <button ion-button round block round color="primary">Cadastrar</button>
   </form>
-
 </ion-content>
