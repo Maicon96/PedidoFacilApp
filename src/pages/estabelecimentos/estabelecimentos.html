@@ -1,12 +1,54 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <ion-title>
       Bares / Restaurantes
     </ion-title>
   </ion-navbar>
+</ion-header> -->
+
+<ion-header class="header">
+
+  <ion-scroll scrollX="true" direction="x" style="width:100%; height: 150px">
+    <div padding>
+      <ion-card>
+        <ion-card-header>
+          Favoritos
+        </ion-card-header>
+        <ion-card-content>
+          <ion-icon name="heart" isActive="false"></ion-icon>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header>
+          Próximos
+        </ion-card-header>
+        <ion-card-content>
+          <ion-icon name="heart" isActive="false"></ion-icon>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header>
+          Qualificados
+        </ion-card-header>
+        <ion-card-content>
+          <ion-icon name="heart" isActive="false"></ion-icon>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header>
+          Abertos
+        </ion-card-header>
+        <ion-card-content>
+          <ion-icon name="heart" isActive="false"></ion-icon>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-scroll>
+
 </ion-header>
 
 <ion-content padding>
+
 
   <ion-card>
     <ion-card-header>
@@ -41,7 +83,7 @@
     </ion-card-content>
   </ion-card>
 
-  <button ion-fab (click)="chamaTelaPedido()">    
+  <button ion-fab (click)="chamaTelaPedido()">
     <div class="label" dir="rtl">Abre</div>
   </button>
 
