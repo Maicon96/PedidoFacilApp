@@ -1,3 +1,5 @@
+import { TabsPage } from './../tabs/tabs';
+import { CardapioPage } from './../cardapio/cardapio';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -14,6 +16,11 @@ export class CarrinhoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CarrinhoPage');
+  }
+
+  public chamaTelaCardapio() {
+    this.navCtrl.push(CardapioPage);
+    //this.navCtrl.parent.select(2);
   }
 
 }

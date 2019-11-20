@@ -1,12 +1,29 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Cardápio</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Louis Beer</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
+
+
+
+    <ion-toolbar color='light'>
+        <ion-searchbar placeholder="Digite o produto..."></ion-searchbar>
+        <ion-buttons end>
+          <button ion-button icon-only>
+            <ion-icon name="md-checkmark-circle" color="primary"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-toolbar>
+      <p>
+
+    <ion-list inset>
+        <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
+          {{ item }}
+        </button> 
+      </ion-list>
+
 
 </ion-content>

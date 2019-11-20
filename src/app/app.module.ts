@@ -1,3 +1,4 @@
+import { CarrinhoProdutoPageModule } from './../pages/carrinho-produto/carrinho-produto.module';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -36,7 +37,8 @@ import { PedidoProvider } from '../providers/pedido/pedido';
     ContaPageModule,
     CarrinhoPageModule,
     CardapioPageModule,
-    CriarContaPageModule
+    CriarContaPageModule,
+    CarrinhoProdutoPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
