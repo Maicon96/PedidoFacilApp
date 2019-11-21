@@ -10,8 +10,13 @@ import { LoginPage } from './../login/login';
 })
 export class ContaPage {
 
+  login = true;
+  cadastrar = false;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+
+  }  
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContaPage');
