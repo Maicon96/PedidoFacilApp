@@ -7,7 +7,7 @@ import { RequestOptions, Request, RequestMethod, Headers } from '@angular/http';
 export class BaresProvider {
 
   public basePath = "/cooperapi";
-  public baseUrl = "http://www.coopera1.com.br:48080/g3ws-comprafacil/pdv/consulta/load";
+  public baseUrl = "http://localhost:8080/login/autenticar/usuario";
 
 
   constructor(public http: HttpClient) {

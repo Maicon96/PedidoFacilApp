@@ -10,13 +10,13 @@
 
   <ion-scroll scrollX="true" direction="x" style="width:100%; height: 150px">
     <div padding>
-      <ion-card>
-        <ion-card-header>
-          Favoritos
-        </ion-card-header>
+      <ion-card>        
         <ion-card-content>
-          <ion-icon name="heart" isActive="false"></ion-icon>
+            Favoritos
         </ion-card-content>
+        <ion-card-header>
+            <ion-icon name="heart" isActive="false"></ion-icon>
+        </ion-card-header>
       </ion-card>
       <ion-card>
         <ion-card-header>
@@ -48,8 +48,6 @@
 </ion-header>
 
 <ion-content padding>
-
-
   <div>
     <ion-list class="listaProduto">
       <ion-item-sliding>
@@ -63,7 +61,6 @@
             <h3 class="totalItem"><strong>Total:</strong></h3>
           </button>
         </ion-item>
-
       </ion-item-sliding>
     </ion-list>
   </div>
@@ -81,7 +78,6 @@
             <h3 class="totalItem"><strong>Total:</strong></h3>
           </button>
         </ion-item>
-
       </ion-item-sliding>
     </ion-list>
   </div>
@@ -89,7 +85,7 @@
   <div>
     <ion-list class="listaProduto">
       <ion-item-sliding>
-        <ion-item class="listaProdutos">
+        <ion-item class="listaProdutos" no-lines>
           <ion-thumbnail item-start>
             <img src="assets/imgs/louis.jpg" alt="">
           </ion-thumbnail>

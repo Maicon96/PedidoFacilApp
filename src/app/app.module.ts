@@ -3,6 +3,9 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { IonicStorageModule } from '@ionic/storage';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -21,6 +24,7 @@ import { BaresProvider } from '../providers/bares/bares';
 import { CardapioProvider } from '../providers/cardapio/cardapio';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { PedidoProvider } from '../providers/pedido/pedido';
+import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,7 @@ import { PedidoProvider } from '../providers/pedido/pedido';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot({ name: 'pedido-facil'}),
     IntroducaoPageModule,
     EstabelecimentosPageModule,
     LoginPageModule,
@@ -38,7 +43,9 @@ import { PedidoProvider } from '../providers/pedido/pedido';
     CarrinhoPageModule,
     CardapioPageModule,
     CriarContaPageModule,
-    CarrinhoProdutoPageModule
+    CarrinhoProdutoPageModule,
+    HttpModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,7 +61,8 @@ import { PedidoProvider } from '../providers/pedido/pedido';
     BaresProvider,
     CardapioProvider,
     UsuarioProvider,
-    PedidoProvider
+    PedidoProvider,
+    AuthProvider
   ]
 })
 export class AppModule {}
