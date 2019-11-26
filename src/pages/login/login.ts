@@ -1,3 +1,4 @@
+import { ContaPage } from './../conta/conta';
 import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { AuthProvider } from './../../providers/auth/auth';
 import { CriarContaPage } from './../criar-conta/criar-conta';
@@ -133,6 +134,14 @@ export class LoginPage {
         const response = (data as any);
         console.log(response);
         
+        const alert = this.alertCtrl.create({
+          title: 'Sucesso!',
+          subTitle: response.msg,
+          buttons: ['OK']
+        });
+        alert.present();    
+
+        this.navCtrl.push(ContaPage);
 
       }, error => {
         const response = (error as any);
