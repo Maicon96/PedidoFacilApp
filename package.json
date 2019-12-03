@@ -34,5 +34,13 @@
     "@ionic/app-scripts": "3.1.0",
     "typescript": "2.4.2"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-facebook4": {
+        "APP_ID": "2484969931829535",
+        "APP_NAME": "pedidoFacilApp"
+      }
+    }
+  }
 }

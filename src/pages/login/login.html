@@ -70,7 +70,7 @@
           </ion-item>
           <ion-item>
             <ion-label floating>CPF</ion-label>
-            <ion-input type="text" name="cpf" [(ngModel)]="cpf" formControlName="cpf"></ion-input>
+            <ion-input type="text" name="cpf" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label floating>E-mail</ion-label>
@@ -83,7 +83,9 @@
 
 
           <div class="divEndereco">
-              <ion-icon name="locate"><h3> Endereço de Entrega</h3></ion-icon>      
+            <ion-icon name="locate">
+              <h3> Endereço de Entrega</h3>
+            </ion-icon>
           </div>
 
           <ion-item no-lines>
@@ -108,7 +110,7 @@
           </ion-item>
           <ion-item>
             <ion-label floating>CEP</ion-label>
-            <ion-input type="number" name="cep" [(ngModel)]="cep" formControlName="cep">
+            <ion-input name="cep" [(ngModel)]="cep" [brmasker]="{mask:'00.000-000', len:10}" formControlName="cep">
             </ion-input>
           </ion-item>
           <ion-item>
@@ -116,11 +118,18 @@
             <ion-input type="text" name="cidade" [(ngModel)]="cidade" formControlName="cidade">
             </ion-input>
           </ion-item>
-          <ion-item>
-            <ion-label floating>Estado</ion-label>
-            <ion-input type="text" name="estado" [(ngModel)]="estado" formControlName="estado">
-            </ion-input>
-          </ion-item>
+
+          <ion-col>
+            <div>
+              <ion-item>
+                <ion-label floating>Estado*</ion-label>
+                <ion-select formControlName="estado" (ionChange)="updateCidades()">
+                  <ion-option *ngFor="let estado of estados" [value]="estado.id">{{estado.nome}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
           <ion-item>
             <ion-label floating>Complemento</ion-label>
             <ion-input type="text" name="complemento" [(ngModel)]="complemento" formControlName="complemento">
@@ -135,6 +144,16 @@
       </ion-list>
 
     </div>
+  </div>
+
+  <div *ngIf="conta">
+    <div text-center>
+      <img src="assets/imgs/logoS.png" alt="">
+      <br>
+    </div>
+
+    colocar dados da conta
+
   </div>
 
 </ion-content>

@@ -1,3 +1,4 @@
+import { CidadeProvider } from './../../providers/cidade/cidade';
 import { ContaPage } from './../conta/conta';
 import { UsuarioProvider } from './../../providers/usuario/usuario';
 import { AuthProvider } from './../../providers/auth/auth';
@@ -7,6 +8,11 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { Storage } from '@ionic/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { EstadoDTO } from '../../models/estado.dto';
+import { CidadeDTO } from '../../models/municipio.dto';
+
+//import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+
 import { Platform } from 'ionic-angular';
 
 @IonicPage()
@@ -14,14 +20,17 @@ import { Platform } from 'ionic-angular';
   selector: 'page-login',
   templateUrl: 'login.html',
 })
+
 export class LoginPage {
 
   //cadastro
   cadastroUsuario: any = {};
+  estados: EstadoDTO[];
+  cidades: CidadeDTO[];
   nomeCompleto: string;
   cpf: string;
   email: string;
-  senha: string;  
+  senha: string;
   rua: string;
   numero: number;
   bairro: string;
@@ -41,30 +50,59 @@ export class LoginPage {
   segment: string = "login";
   isAndroid: boolean = false;
 
+  user: any = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public authProvider: AuthProvider, public usuarioProvider: UsuarioProvider, public alertCtrl: AlertController, public storage: Storage, 
-    platform: Platform, public formBuilder: FormBuilder) {
-      this.isAndroid = platform.is('android');
 
-      this.cadastroUsuario = this.formBuilder.group({
-        nomeCompleto: ['', Validators.required],
-        cpf: ['', Validators.required],
-        email: ['', Validators.required],
-        senha: ['', Validators.required],
-        rua: [''],
-        numero: [''],
-        bairro: [''],
-        cep: [''],
-        cidade: [''],
-        estado: [''],
-        complemento: ['']
-      });
-  }  
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public authProvider: AuthProvider, public usuarioProvider: UsuarioProvider, 
+    public alertCtrl: AlertController, public storage: Storage,
+    platform: Platform, public formBuilder: FormBuilder, public cidadeProvider: CidadeProvider) {
+    this.isAndroid = platform.is('android');
 
+    this.cadastroUsuario = this.formBuilder.group({
+      nomeCompleto: ['', Validators.required],
+      cpf: ['', Validators.required],
+      email: ['', Validators.required],
+      senha: ['', Validators.required],
+      rua: [''],
+      numero: [''],
+      bairro: [''],
+      cep: [''],
+      cidade: [''],
+      estado: [''],
+      complemento: ['']
+    });
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ContaPage');
+
+    this.storage.get('token').then((val) => {
+      if (val != "" && val != null) {
+        this.login = false;
+        this.conta = true;
+      }
+
+      this.login = true;
+      this.conta = false;
+    });
+
+  }
+
+  updateCidades() {
+
+    console.log("aqqqq");
+    
+    let estado = this.cadastroUsuario.value.estado;
+    this.cidadeProvider.findAll(estado)
+      .subscribe(response => {
+
+        console.log("sucessooooo");
+        console.log(response);
+
+        //this.cidades = response;
+        //this.formGroup.controls.municipio_nasc.setValue(null);
+      },
+        error => { });
   }
 
   public entrar() {
@@ -74,12 +112,13 @@ export class LoginPage {
       senha: this.senha
     };
 
+    
     this.authProvider.login(json).subscribe(
       data => {
         const response = (data as any);
-        console.log(response);
-        console.log(response.token);
         this.storage.set('token', response.token);
+        this.conta = true;
+        this.login = false;
       }, error => {
         const response = (error as any);
         console.log(response);
@@ -88,7 +127,7 @@ export class LoginPage {
           subTitle: response.error.msg,
           buttons: ['OK']
         });
-        alert.present();       
+        alert.present();
 
       })
   }
@@ -100,7 +139,7 @@ export class LoginPage {
     this.navCtrl.push(CriarContaPage);
   }
 
-  salvarUsuario() {    
+  salvarUsuario() {
 
     let endereco;
 
@@ -122,8 +161,8 @@ export class LoginPage {
         cpf: this.cadastroUsuario.value.cpf,
         email: this.cadastroUsuario.value.email,
         senha: this.cadastroUsuario.value.senha,
-        endereco: endereco        
-      }      
+        endereco: endereco
+      }
     };
 
     console.log("aqq");
@@ -133,13 +172,13 @@ export class LoginPage {
       data => {
         const response = (data as any);
         console.log(response);
-        
+
         const alert = this.alertCtrl.create({
           title: 'Sucesso!',
           subTitle: response.msg,
           buttons: ['OK']
         });
-        alert.present();    
+        alert.present();
 
         this.navCtrl.push(ContaPage);
 
@@ -151,11 +190,19 @@ export class LoginPage {
           subTitle: response.error.msg,
           buttons: ['OK']
         });
-        alert.present();       
+        alert.present();
 
       })
 
   }
-  
 
+
+}
+
+export class Usuario {
+  codigo: number;
+  nome: string;
+  email: string;
+  login: string;
+  senha: string;
 }

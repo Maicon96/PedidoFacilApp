@@ -6,6 +6,8 @@ import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { Facebook } from '@ionic-native/facebook/ngx';
+import { BrMaskerModule } from 'brmasker-ionic-3';
 
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -25,6 +27,7 @@ import { CardapioProvider } from '../providers/cardapio/cardapio';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { PedidoProvider } from '../providers/pedido/pedido';
 import { AuthProvider } from '../providers/auth/auth';
+import { CidadeProvider } from '../providers/cidade/cidade';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import { AuthProvider } from '../providers/auth/auth';
     CriarContaPageModule,
     CarrinhoProdutoPageModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    BrMaskerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -62,7 +66,9 @@ import { AuthProvider } from '../providers/auth/auth';
     CardapioProvider,
     UsuarioProvider,
     PedidoProvider,
-    AuthProvider
+    AuthProvider,
+    Facebook,
+    CidadeProvider
   ]
 })
 export class AppModule {}
