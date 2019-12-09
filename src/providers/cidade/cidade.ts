@@ -12,6 +12,9 @@ export class CidadeProvider {
   }
 
   findAll(estado : string) : Observable<CidadeDTO[]>  {
+
+    console.log("find");
+    
     return this.http.get<CidadeDTO[]>(`${this.baseApiPath}/${estado}/municipios`);
 }
 

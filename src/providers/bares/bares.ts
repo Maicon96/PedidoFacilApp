@@ -6,8 +6,8 @@ import { RequestOptions, Request, RequestMethod, Headers } from '@angular/http';
 @Injectable()
 export class BaresProvider {
 
-  public basePath = "/cooperapi";
-  public baseUrl = "http://localhost:8080/login/autenticar/usuario";
+  //public basePath = "/cooperapi";
+  public baseUrl = "http://localhost:8080/service/estabelecimentos";
 
 
   constructor(public http: HttpClient) {
@@ -15,7 +15,7 @@ export class BaresProvider {
   }
 
 
-  public buscarProdutos(request: any) {
+  public buscarEstabelecimentos() {
 
     const headers = new Headers({      
       'Accept': 'application/json',
@@ -24,11 +24,10 @@ export class BaresProvider {
     
     const options = new RequestOptions({  headers : headers });
     
-    console.log("maicon - url : " + this.baseUrl + '/produtos');    
+    console.log("maicon - url : " + this.baseUrl + '/load');    
     console.log("maicon - headers : " + headers);    
-    console.log("maicon - json : " + JSON.stringify(request));
 
-    return this.http.post(this.baseUrl + '/produtos',  request)
+    return this.http.post(this.baseUrl + '/load',  "")
     //.map(res => { res.json() })
     //.subscribe( data => console.log(data));
 

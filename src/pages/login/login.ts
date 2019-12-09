@@ -1,3 +1,4 @@
+import { EstadoService } from './../../providers/estado/estado';
 import { CidadeProvider } from './../../providers/cidade/cidade';
 import { ContaPage } from './../conta/conta';
 import { UsuarioProvider } from './../../providers/usuario/usuario';
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder';
 
 import { EstadoDTO } from '../../models/estado.dto';
 import { CidadeDTO } from '../../models/municipio.dto';
@@ -31,6 +34,10 @@ export class LoginPage {
   cpf: string;
   email: string;
   senha: string;
+  confirmarSenha: string;
+  senhaDiferente = false;
+
+  localizacaoAtual = false;
   rua: string;
   numero: number;
   bairro: string;
@@ -56,7 +63,8 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public authProvider: AuthProvider, public usuarioProvider: UsuarioProvider, 
     public alertCtrl: AlertController, public storage: Storage,
-    platform: Platform, public formBuilder: FormBuilder, public cidadeProvider: CidadeProvider) {
+    platform: Platform, public formBuilder: FormBuilder, public cidadeProvider: CidadeProvider,
+    public estadoService: EstadoService, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder) {
     this.isAndroid = platform.is('android');
 
     this.cadastroUsuario = this.formBuilder.group({
@@ -64,6 +72,7 @@ export class LoginPage {
       cpf: ['', Validators.required],
       email: ['', Validators.required],
       senha: ['', Validators.required],
+      //confirmarSenha: ['', Validators.required],
       rua: [''],
       numero: [''],
       bairro: [''],
@@ -86,24 +95,81 @@ export class LoginPage {
       this.conta = false;
     });
 
+  
+    this.estadoService.findAll()
+      .subscribe(response => {
+        this.estados = response;
+        this.cadastroUsuario.controls.estado.setValue(this.estados[0].id);
+        this.updateCidades();
+      },
+        error => { });
+    
+   
   }
 
-  updateCidades() {
+  pegarLocalizacaoAtual(event: any) {
+    console.log(event.checked);
 
-    console.log("aqqqq");
-    
+    const options: NativeGeocoderOptions = {
+      useLocale: true,
+      maxResults: 5
+  };
+
+    if (event.checked == true) {
+      this.geolocation.getCurrentPosition().then((resp) => {
+        this.nativeGeocoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude, options)
+          .then((result: NativeGeocoderReverseResult[]) => {
+            console.log(JSON.stringify(result[0])) 
+
+
+            // setar os valores do endereço
+
+            this.cep = 1125454;
+         })
+          //.catch((error: any) => console.log(error));
+          .catch((error: any) => {
+
+            const alert = this.alertCtrl.create({
+              title: 'Erro!',
+              subTitle: "Falha ao buscar endereço atual",
+              buttons: ['OK']
+            });
+            alert.present();
+  
+          });
+
+        
+        }).catch((error) => {
+          const alert = this.alertCtrl.create({
+            title: 'Erro!',
+            subTitle: error.message,
+            buttons: ['OK']
+          });
+          alert.present();
+
+        });
+        
+        /*let watch = this.geolocation.watchPosition();
+        watch.subscribe((data) => {
+          console.log(data);
+        });*/   
+    }
+
+  }
+
+  updateCidades() {    
+
+    console.log("aq");
+
     let estado = this.cadastroUsuario.value.estado;
     this.cidadeProvider.findAll(estado)
       .subscribe(response => {
-
-        console.log("sucessooooo");
         console.log(response);
-
-        //this.cidades = response;
-        //this.formGroup.controls.municipio_nasc.setValue(null);
+        this.cidades = response;
       },
-        error => { });
+        error => { console.log(error) });
   }
+
 
   public entrar() {
 
@@ -155,6 +221,20 @@ export class LoginPage {
       }
     }
 
+    console.log(this.senha);
+    console.log(this.confirmarSenha);
+
+    /*if (this.senha != this.confirmarSenha) {
+      this.senhaDiferente = true;
+     
+      const alert = this.alertCtrl.create({
+        title: 'Atenção!',
+        subTitle: 'Senhas não conferem',
+        buttons: ['OK']
+      });
+      alert.present();
+    }*/
+
     const json = {
       registro: {
         nomeCompleto: this.cadastroUsuario.value.nomeCompleto,
@@ -175,7 +255,8 @@ export class LoginPage {
 
         const alert = this.alertCtrl.create({
           title: 'Sucesso!',
-          subTitle: response.msg,
+          //subTitle: response.msg,
+          subTitle: "Sucesso ao cadastrar conta!",
           buttons: ['OK']
         });
         alert.present();
@@ -187,7 +268,8 @@ export class LoginPage {
         console.log(response);
         const alert = this.alertCtrl.create({
           title: 'Atenção!',
-          subTitle: response.error.msg,
+          //subTitle: response.error.msg,
+          subTitle: "Erro ao cadastrar conta!",
           buttons: ['OK']
         });
         alert.present();

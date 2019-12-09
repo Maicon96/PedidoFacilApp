@@ -1,3 +1,4 @@
+import { Geolocation } from '@ionic-native/geolocation';
 import { CarrinhoProdutoPageModule } from './../pages/carrinho-produto/carrinho-produto.module';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -6,8 +7,10 @@ import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { Facebook } from '@ionic-native/facebook/ngx';
+//import { Facebook } from '@ionic-native/facebook/ngx';
 import { BrMaskerModule } from 'brmasker-ionic-3';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
+import { Network } from '@ionic-native/network';
 
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -28,6 +31,8 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
 import { PedidoProvider } from '../providers/pedido/pedido';
 import { AuthProvider } from '../providers/auth/auth';
 import { CidadeProvider } from '../providers/cidade/cidade';
+import { EstadoService } from '../providers/estado/estado';
+import { UtilsProvider } from '../providers/utils/utils';
 
 @NgModule({
   declarations: [
@@ -67,8 +72,13 @@ import { CidadeProvider } from '../providers/cidade/cidade';
     UsuarioProvider,
     PedidoProvider,
     AuthProvider,
-    Facebook,
-    CidadeProvider
+    //Facebook,
+    CidadeProvider,
+    EstadoService,
+    Geolocation,
+    NativeGeocoder,
+    UtilsProvider,
+    Network
   ]
 })
 export class AppModule {}

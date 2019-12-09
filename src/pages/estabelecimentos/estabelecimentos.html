@@ -10,12 +10,12 @@
 
   <ion-scroll scrollX="true" direction="x" style="width:100%; height: 150px">
     <div padding>
-      <ion-card>        
+      <ion-card>
         <ion-card-content>
-            Favoritos
+          Favoritos
         </ion-card-content>
         <ion-card-header>
-            <ion-icon name="heart" isActive="false"></ion-icon>
+          <ion-icon name="heart" isActive="false"></ion-icon>
         </ion-card-header>
       </ion-card>
       <ion-card>
@@ -47,77 +47,42 @@
 
 </ion-header>
 
-<ion-content padding>
-  <div>
-    <ion-list class="listaProduto">
-      <ion-item-sliding>
-        <ion-item class="listaProdutos">
-          <ion-thumbnail item-start>
-            <img src="assets/imgs/louis.jpg" alt="">
-          </ion-thumbnail>
-          <button ion-item item-start>
-            <h1><strong>Louis Beer</strong></h1>
-            <h3>Preço: </h3>
-            <h3 class="totalItem"><strong>Total:</strong></h3>
-          </button>
-        </ion-item>
-      </ion-item-sliding>
-    </ion-list>
-  </div>
+<ion-content>
 
-  <div>
-    <ion-list class="listaProduto">
-      <ion-item-sliding>
-        <ion-item class="listaProdutos">
-          <ion-thumbnail item-start>
-            <img src="assets/imgs/louis.jpg" alt="">
-          </ion-thumbnail>
-          <button ion-item item-start>
-            <h1><strong>Louis Beer</strong></h1>
-            <h3>Preço: </h3>
-            <h3 class="totalItem"><strong>Total:</strong></h3>
-          </button>
-        </ion-item>
-      </ion-item-sliding>
-    </ion-list>
-  </div>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Prato ou Restaurante..." [(ngModel)]="barDigitado"></ion-searchbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)='listarBares()'>
+        <ion-icon name="md-checkmark-circle" color="primary"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 
-  <div>
-    <ion-list class="listaProduto">
-      <ion-item-sliding>
-        <ion-item class="listaProdutos" no-lines>
-          <ion-thumbnail item-start>
-            <img src="assets/imgs/louis.jpg" alt="">
-          </ion-thumbnail>
-          <button ion-item item-start>
-            <h1><strong>Louis Beer</strong></h1>
-            <h3>Preço: </h3>
-            <h3 class="totalItem"><strong>Total:</strong></h3>
-          </button>
-        </ion-item>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Puxar para atualizar" refreshingSpinner="circles"
+      refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
 
-      </ion-item-sliding>
-    </ion-list>
-  </div>
+  <ion-list no-lines>
+    <ion-item class="listaProdutos" *ngFor="let bar of bares">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/louis.jpg" alt="">
+      </ion-thumbnail>
+      <button ion-item item-start>
+        <h1><strong>{{bar.nome}}</strong></h1>
+        <h3>{{bar.cidade}} - {{bar.estado}}</h3>
+        <h3 class="situacaoBar"><strong>Aberto</strong></h3>
 
-  <div>
-    <ion-list class="listaProduto">
-      <ion-item-sliding>
-        <ion-item class="listaProdutos">
-          <ion-thumbnail item-start>
-            <img src="assets/imgs/louis.jpg" alt="">
-          </ion-thumbnail>
-          <button ion-item item-start>
-            <h1><strong>Louis Beer</strong></h1>
-            <h3>Preço: </h3>
-            <h3 class="totalItem"><strong>Total:</strong></h3>
-          </button>
-        </ion-item>
+        <div>
+          <ion-icon name="share-alt"></ion-icon>
+          <ion-icon name="heart"></ion-icon>
+        </div>
 
-      </ion-item-sliding>
-    </ion-list>
-  </div>
-
+        <ion-icon class="qualificacao" name="star"> {{mediaQualificacao}}</ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
 
   <button ion-fab (click)="chamaTelaPedido()">
     <div class="label" dir="rtl">Abre</div>

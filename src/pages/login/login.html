@@ -18,7 +18,7 @@
       </ion-segment>
     </div>
 
-    <div [ngSwitch]="segment">
+    <div class="login" [ngSwitch]="segment">
       <ion-list *ngSwitchCase="'login'">
 
 
@@ -45,7 +45,7 @@
         </div>
         <br>
         <br>
-        <div text-center>
+        <div class="acesso" text-center>
           <h4>Acesso rápido com</h4>
         </div>
 
@@ -64,32 +64,39 @@
       <ion-list padding *ngSwitchCase="'cadastrar'">
         <form [formGroup]="cadastroUsuario" (ngSubmit)="salvarUsuario()">
           <ion-item>
-            <ion-label floating>Nome Completo</ion-label>
+            <ion-label floating>Nome Completo *</ion-label>
             <ion-input type="text" name="nomeCompleto" [(ngModel)]="nomeCompleto" formControlName="nomeCompleto">
             </ion-input>
           </ion-item>
           <ion-item>
-            <ion-label floating>CPF</ion-label>
-            <ion-input type="text" name="cpf" [brmasker]="{mask:'000.000.000-00', len:14}"></ion-input>
+            <ion-label floating>CPF *</ion-label>
+            <ion-input type="text" name="cpf" [brmasker]="{mask:'000.000.000-00', len:14}" [(ngModel)]="cpf" formControlName="cpf"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label floating>E-mail</ion-label>
+            <ion-label floating>E-mail *</ion-label>
             <ion-input type="email" name="email" [(ngModel)]="email" formControlName="email"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label floating>Senha</ion-label>
+            <ion-label floating>Senha *</ion-label>
             <ion-input type="password" name="senha" [(ngModel)]="senha" formControlName="senha"></ion-input>
           </ion-item>
+          <!--<ion-item>
+            <ion-label floating>Confirmar Senha</ion-label>
+            <ion-input type="password" name="confirmarSenha" [(ngModel)]="confirmarSenha" formControlName="confirmarSenha"></ion-input>
+          </ion-item>-->
+          
 
 
+          <br>
           <div class="divEndereco">
-            <ion-icon name="locate">
-              <h3> Endereço de Entrega</h3>
-            </ion-icon>
+            <h4> Endereço de Entrega</h4>
+            <ion-toggle disabled checked="false"></ion-toggle>
           </div>
 
+          <br>
+
           <ion-item no-lines>
-            <ion-checkbox color="primary"></ion-checkbox>
+            <ion-checkbox color="primary" (ionChange)="pegarLocalizacaoAtual($event)"></ion-checkbox>
             <ion-label>Usar Localização Atual</ion-label>
           </ion-item>
 
@@ -113,22 +120,24 @@
             <ion-input name="cep" [(ngModel)]="cep" [brmasker]="{mask:'00.000-000', len:10}" formControlName="cep">
             </ion-input>
           </ion-item>
-          <ion-item>
-            <ion-label floating>Cidade</ion-label>
-            <ion-input type="text" name="cidade" [(ngModel)]="cidade" formControlName="cidade">
-            </ion-input>
-          </ion-item>
 
           <ion-col>
             <div>
               <ion-item>
-                <ion-label floating>Estado*</ion-label>
+                <ion-label floating>Estado</ion-label>
                 <ion-select formControlName="estado" (ionChange)="updateCidades()">
                   <ion-option *ngFor="let estado of estados" [value]="estado.id">{{estado.nome}}</ion-option>
                 </ion-select>
               </ion-item>
             </div>
           </ion-col>
+
+          <ion-item>
+            <ion-label floating>Cidade</ion-label>
+            <ion-select formControlName="cidade">
+              <ion-option *ngFor="let cidade of cidades" [value]="cidade.nome">{{cidade.nome}}</ion-option>
+            </ion-select>
+          </ion-item>
 
           <ion-item>
             <ion-label floating>Complemento</ion-label>
@@ -139,7 +148,7 @@
           <br>
           <br>
           <button [disabled]="cadastroUsuario.invalid" ion-button round block color="primary"
-            on-click="salvarUsuario()">Salvar</button>
+            on-click="salvarUsuario()">Criar Conta</button>
         </form>
       </ion-list>
 

@@ -15,6 +15,22 @@ page-estabelecimentos {
                 padding: 0px !important;
             }    
         }
-    }    
+    } 
+    
+    .situacaoBar {
+        color: #05871E;
+    }
+
+    .qualificacao {
+        position: absolute;
+        left: 85%;
+        top: 60px;
+    }
+
+    .compartilharBar {
+        position: absolute;
+        left: 85%;
+        top: 100px;
+    }
 
 }
