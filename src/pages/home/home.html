@@ -1,9 +1,89 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+<ion-header class="header">
+
+  <ion-buttons left>
+    <button ion-button icon-only>
+        <ion-icon name="arrow-back"></ion-icon>
+    </button></ion-buttons>
+
+      <div clas="bar" text-center>
+        <img src="assets/imgs/louis.jpg" alt="">    
+        <h1><strong>Louis Beer</strong></h1>
+        <h5>Estamos Abertos</h5>
+        <h6>Entrega: 40 min - 100 min</h6>
+        <h6>Balcão: 20 min - 50 min</h6>
+      </div>
+
+      <div class="divFiltros" padding>
+        <ion-card class="cardFiltro">
+          <button ion-item item-start>
+            <ion-card-header>            
+              <h5>Promoções</h5>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-icon name="heart" isActive="false"></ion-icon>
+            </ion-card-content>
+          </button>
+        </ion-card>
+  
+        <ion-card>
+          <button ion-item item-start>
+            <ion-card-header>
+              <h5>Meus Pedidos</h5>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-icon name="heart" isActive="false"></ion-icon>
+            </ion-card-content>
+          </button>
+        </ion-card>
+  
+        <ion-card>
+          <button ion-item item-start>
+            <ion-card-header>            
+              <h5>Ligar</h5>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-icon name="heart" isActive="false"></ion-icon>
+            </ion-card-content>
+          </button>
+        </ion-card>
+  
+        <ion-card>
+          <button ion-item item-start>
+            <ion-card-header>            
+              <h5>Site</h5>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-icon name="heart" isActive="false"></ion-icon>
+            </ion-card-content>
+          </button>
+        </ion-card>
+  
+      </div>
+
 </ion-header>
 
-<ion-content padding>
-  <h2>DEU CERTO!</h2>
+<ion-content>
+
+  <ion-toolbar>
+    <ion-searchbar placeholder="Buscar Produto..." [(ngModel)]="produtoDigitado"></ion-searchbar>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="md-checkmark-circle" color="primary"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-list no-lines>
+    <ion-item class="listaProdutos" *ngFor="let produto of produtos">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/combo.jpg" alt="">
+      </ion-thumbnail>
+      <button ion-item item-start>
+        <h1><strong>{{produto.nome}}</strong></h1>       
+        <h3><strong>Válido até 23/05/2020</strong></h3>
+
+      </button>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

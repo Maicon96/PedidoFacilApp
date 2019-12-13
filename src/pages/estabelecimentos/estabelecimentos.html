@@ -9,39 +9,52 @@
 <ion-header class="header">
 
   <ion-scroll scrollX="true" direction="x" style="width:100%; height: 150px">
-    <div padding>
-      <ion-card>
-        <ion-card-content>
-          Favoritos
-        </ion-card-content>
-        <ion-card-header>
-          <ion-icon name="heart" isActive="false"></ion-icon>
-        </ion-card-header>
+
+    <div class="divFiltros" padding>
+      <ion-card class="cardFiltro">
+        <button ion-item item-start>
+          <ion-card-header>            
+            <h5>Favoritos</h5>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-icon name="heart" isActive="false"></ion-icon>
+          </ion-card-content>
+        </button>
       </ion-card>
+
       <ion-card>
-        <ion-card-header>
-          Próximos
-        </ion-card-header>
-        <ion-card-content>
-          <ion-icon name="heart" isActive="false"></ion-icon>
-        </ion-card-content>
+        <button ion-item item-start>
+          <ion-card-header>
+            <h5>Próximos</h5>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-icon name="heart" isActive="false"></ion-icon>
+          </ion-card-content>
+        </button>
       </ion-card>
+
       <ion-card>
-        <ion-card-header>
-          Qualificados
-        </ion-card-header>
-        <ion-card-content>
-          <ion-icon name="heart" isActive="false"></ion-icon>
-        </ion-card-content>
+        <button ion-item item-start>
+          <ion-card-header>            
+            <h5>Qualificados</h5>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-icon name="heart" isActive="false"></ion-icon>
+          </ion-card-content>
+        </button>
       </ion-card>
+
       <ion-card>
-        <ion-card-header>
-          Abertos
-        </ion-card-header>
-        <ion-card-content>
-          <ion-icon name="heart" isActive="false"></ion-icon>
-        </ion-card-content>
+        <button ion-item item-start>
+          <ion-card-header>            
+            <h5>Abertos</h5>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-icon name="heart" isActive="false"></ion-icon>
+          </ion-card-content>
+        </button>
       </ion-card>
+
     </div>
   </ion-scroll>
 
@@ -69,14 +82,14 @@
       <ion-thumbnail item-start>
         <img src="assets/imgs/louis.jpg" alt="">
       </ion-thumbnail>
-      <button ion-item item-start>
+      <button ion-item item-start (click)="chamaTelaPedido(bar.id, bar.nome, '', '')">
         <h1><strong>{{bar.nome}}</strong></h1>
         <h3>{{bar.cidade}} - {{bar.estado}}</h3>
         <h3 class="situacaoBar"><strong>Aberto</strong></h3>
 
-        <div>
-          <ion-icon name="share-alt"></ion-icon>
-          <ion-icon name="heart"></ion-icon>
+        <div class="compartilharBar">
+          <ion-icon class="iconCompartilhar" name="share-alt" color="greenlight" (click)="compartilharBar()"></ion-icon>
+          <ion-icon class="iconComp" name="heart" color="greenlight"></ion-icon>
         </div>
 
         <ion-icon class="qualificacao" name="star"> {{mediaQualificacao}}</ion-icon>
@@ -84,8 +97,10 @@
     </ion-item>
   </ion-list>
 
-  <button ion-fab (click)="chamaTelaPedido()">
-    <div class="label" dir="rtl">Abre</div>
+  <!--
+  <button ion-item item-start (click)="compartilharBar()">
+      aaaaaaaaaaaaaaaa
   </button>
+-->
 
 </ion-content>

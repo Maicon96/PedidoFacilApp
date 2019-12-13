@@ -1,3 +1,32 @@
 page-home {
 
+    .header {
+    
+        ion-card {
+            width: 100px !important;
+            display: inline-block;            
+            background-color: blue; // black
+            //box-shadow: none;
+        }
+
+        ion-card-header {
+            font-size: 10;
+        }
+
+        img {
+            width: 120px;
+            height: 100px;
+            left: 50px;
+        }
+
+        ion-thumbnail {
+            align-content: center;
+        }
+
+        .bar {
+            align-items: center;
+        }
+    
+    } 
+
 }

@@ -3,6 +3,7 @@ import { UtilsProvider } from './../../providers/utils/utils';
 import { Component } from '@angular/core';
 import { TabsPage } from './../tabs/tabs';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @IonicPage()
 @Component({
@@ -24,20 +25,32 @@ export class EstabelecimentosPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public baresProvider: BaresProvider,
     public utilsProvider: UtilsProvider, public loadingCtr: LoadingController, 
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController, private socialSharing: SocialSharing) {
 
       this.mediaQualificacao = 4.7;
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() {   
+
     console.log('ionViewDidLoad EstabelecimentosPage');
 
     this.listarBares();
   }
 
-  public chamaTelaPedido() {
+  compartilharBar() {
+    console.log("chegou");
+
+    this.socialSharing.share("opa", null, null, "www.google.com").then(() => {
+      // Sharing via email is possible
+    }).catch(() => {
+      // Sharing via email is not possible
+    });
+  }
+
+  public chamaTelaPedido(id: number, nome: string, status: string, entrega: string) {
     //vai para a pagina de tabs que é o meu home
-    this.navCtrl.push(TabsPage);
+    this.navCtrl.push(TabsPage, { id: id, nome: nome, status: status,  entrega: entrega });
+
     //this.navCtrl.push(TabsPage);
   }
 

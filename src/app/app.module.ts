@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrMaskerModule } from 'brmasker-ionic-3';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { Network } from '@ionic-native/network';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -78,7 +79,8 @@ import { UtilsProvider } from '../providers/utils/utils';
     Geolocation,
     NativeGeocoder,
     UtilsProvider,
-    Network
+    Network,
+    SocialSharing 
   ]
 })
 export class AppModule {}

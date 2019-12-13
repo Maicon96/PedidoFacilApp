@@ -6,8 +6,14 @@ page-estabelecimentos {
         }
     
         ion-card {
-            width: 100px !important;
-            display: inline-block;
+            width: 120px !important;
+            display: inline-block;            
+            background-color: blue; // black
+            //box-shadow: none;
+        }
+
+        ion-card-header {
+            font-size: 10;
         }
     
         ion-scroll {            
@@ -25,12 +31,40 @@ page-estabelecimentos {
         position: absolute;
         left: 85%;
         top: 60px;
+        color: yellow;
     }
 
     .compartilharBar {
         position: absolute;
         left: 85%;
-        top: 100px;
+        top: 10px;
+
+        .iconCompartilhar {
+            color: red;
+            width: 20px;
+            height: 20px;
+        }
+
+        .iconComp {
+            color: red;
+        }
+
     }
+
+    .divFiltros {
+        .cardFiltro {
+            color: yellow;
+    
+        }
+
+        ion-card {
+            width: 60px;
+            height: 100px;
+        }
+
+        ion-icon {
+            font-size: 3em;
+        }
+    }    
 
 }

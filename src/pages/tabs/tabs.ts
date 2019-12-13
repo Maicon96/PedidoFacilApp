@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { NavParams } from 'ionic-angular';
+
 import { CardapioPage } from '../cardapio/cardapio';
 import { CarrinhoPage } from '../carrinho/carrinho';
 import { HomePage } from '../home/home';
@@ -15,7 +17,23 @@ export class TabsPage {
   tab3Root = CarrinhoPage;
   tab4Root = LoginPage;
 
-  constructor() {
+  id: number;
+  nome: string;
+  status: string;
+  entrega: string;
+
+  constructor(public navParams: NavParams) {
+
+    this.id = this.navParams.get("id");
+    this.nome = this.navParams.get("nome");
+    this.status = this.navParams.get("status");
+    this.entrega = this.navParams.get("entrega");
+
+    console.log(this.id);
+    console.log(this.nome);
+    console.log(this.status);
+    console.log(this.entrega);
+    
     
   }
   
